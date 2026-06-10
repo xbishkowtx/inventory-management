@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management</title>
+  <style>
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, #ff007f, #7f00ff, #00f0ff);
+      padding: 20px; color: #1a1a2e; text-align: center; box-sizing: border-box;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3); max-width: 480px; width: 100%;
+      border: 4px solid #fff; transition: transform 0.3s;
+    }
+    h1 {
+      font-size: 2.8rem; margin: 0 0 10px 0; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(45deg, #ff0055, #0055ff, #00ffaa); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; text-transform: uppercase;
+    }
+    p { color: #666; font-size: 1.1rem; margin-bottom: 30px; line-height: 1.4; }
+    button {
+      background: linear-gradient(45deg, #ff007f, #7f00ff); color: white; border: none;
+      padding: 18px 32px; font-size: 1.25rem; font-weight: bold; border-radius: 50px; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(127, 0, 255, 0.4); transition: 0.2s; width: 100%; margin-bottom: 25px;
+    }
+    button:hover { transform: scale(1.04); box-shadow: 0 12px 26px rgba(127, 0, 255, 0.6); }
+    button:active { transform: scale(0.98); }
+    #result {
+      background: #f0f3ff; border-radius: 16px; padding: 20px; min-height: 90px;
+      display: flex; flex-direction: column; justify-content: center; border: 2px dashed #7f00ff;
+      opacity: 0; transform: translateY(10px); transition: 0.4s ease;
+    }
+    .item-tag {
+      font-weight: 800; text-transform: uppercase; font-size: 1.4rem; color: #ff007f; margin-bottom: 6px;
+    }
+    .idea { font-size: 1rem; color: #4b0082; font-weight: 500; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="title">Inventory Management</h1>
+    <p>Tame the tech chaos with zero effort & maximum fun!</p>
+    <button onclick="organize()" id="btn">Lets organize our inventory!</button>
+    <div id="result">
+      <div id="item" class="item-tag"></div>
+      <div id="idea" class="idea"></div>
+    </div>
+  </div>
+  <script>
+    const items = [
+      { name: "Server", ideas: ["Dust off the mainframe & label it 'Not a Coffee Table'!", "Audit backups (yes, actually do it this time)!", "Install blinky LED strips to make it look 10x faster!"] },
+      { name: "Switch", ideas: ["Unspaghetti the ethernet cables and color-code them by vibe!", "Name your ports after your favorite sci-fi starships!", "Gently whisper 'thank you for the packets' to it."] },
+      { name: "PC", ideas: ["Purge 10,000 desktop icons labeled 'New Folder (4)'!", "Give the dusty mechanical keyboard a deeply satisfying keycap clean!", "Set a ridiculous custom boot-screen logo!"] },
+      { name: "Computer", ideas: ["Upgrade RAM or just close those 87 open Chrome tabs!", "Run a malware scan and make sure it's not mining crypto for a cat!", "Optimize storage by finally deleting that 80GB meme archive."] },
+      { name: "Network", ideas: ["Walk around testing Wi-Fi signal & name the channel 'TellMyWiFiLoveHer'!", "Change the admin password from 'admin123' to literally anything else!", "Configure a guest network named 'FBI Open Van #4'."] }
+    ];
+    function organize() {
+      const choice = items[Math.floor(Math.random() * items.length)];
+      const idea = choice.ideas[Math.floor(Math.random() * choice.ideas.length)];
+      const res = document.getElementById("result");
+      res.style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("item").textContent = "Selected: " + choice.name;
+        document.getElementById("idea").textContent = `"${idea}"`;
+        res.style.opacity = "1"; res.style.transform = "translateY(0)";
+      }, 200);
+    }
+  </script>
+</body>
+</html>
